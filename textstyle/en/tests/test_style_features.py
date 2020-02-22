@@ -1,4 +1,4 @@
-from textstyle.style_features.en_style_features import get_basic_style_features
+from textstyle.en.stylometry.style_features import get_basic_style_features
 
 
 def test_get_basic_style_features():
