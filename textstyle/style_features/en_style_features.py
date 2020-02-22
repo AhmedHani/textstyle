@@ -13,7 +13,9 @@ nltk.download('averaged_perceptron_tagger')
 __stopwords_list = set(stopwords.words('english'))
 
 
-def get_basic_style_features(text):
+def get_basic_style_features(text, split_to_sentences=False):
+    if isinstance(text, str) and split_to_sentences:
+        text = nltk.sent_tokenize(text)
     # words count
     words_count = [len(sample.split()) for sample in text]
 
