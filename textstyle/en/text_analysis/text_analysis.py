@@ -5,12 +5,15 @@ import nltk
 import codecs
 import string
 import copy as cp
+import pandas as pd
 import seaborn as sns
 from functools import reduce
 from collections import Counter
 import matplotlib.pyplot as plt
 from nltk.corpus import stopwords
 from nltk import word_tokenize, pos_tag
+from sklearn.feature_extraction.text import TfidfVectorizer
+
 
 sns.set(style="darkgrid")
 nltk.download('stopwords')
@@ -42,3 +45,11 @@ def words_ids(text):
 
     return words_dict, ids_dict
 
+
+def tfidf(text: list):
+    vectorizer = TfidfVectorizer()
+    X = vectorizer.fit_transform(text)
+    features_names = vectorizer.get_feature_names()
+    df = pd.DataFrame(X.toarray(), columns=features_names)
+
+    return X.toarray(), df.T.to_dict().values(), features_names
